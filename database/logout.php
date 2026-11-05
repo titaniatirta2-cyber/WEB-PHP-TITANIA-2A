@@ -10,6 +10,9 @@ unset($_SESSION['username']);
  
 //hancurkan data session
 session_destroy();
+
+//hapus cookie
+setcookie('username','',time()-60);
  
 //kembali ke login
 header("location: login.php");
