@@ -1,13 +1,21 @@
 <?php
+//buat session
+if(!isset($_SESSION)) {
+    session_start();
+}
+ 
+//jika ada orang yang masuk tanpa login
+if(empty($_SESSION['username'])) {
+    header("location: login.php");
+}
 //memanggil file koneksi
 include('koneksi.php');
  
 //ambil data dari database
 $query="SELECT * FROM tb_pengurus ORDER BY id ASC";
- 
 $data=mysqli_query($conn,$query);
 ?>
- 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +24,9 @@ $data=mysqli_query($conn,$query);
 <body>
  
 <h1>Data Pengurus</h1>
+<p>
+    <a href="logout.php">Logout</a>
+</p>
 <table border="1">
     <tr>
         <th>ID</th>
